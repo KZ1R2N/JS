@@ -12,9 +12,9 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-    $key = 'omar';
-    $value = 'rahin';
+    session_start();  
+    $key = $_SESSION['k'];
+    $value = $_SESSION['v'];
     $query = "DELETE FROM forkers WHERE reviewers = '{$key}' AND forker = '{$value}'";
     $result1 = $conn->query($query);
 

@@ -15,9 +15,11 @@ if ($conn->connect_error) {
 
 $sql = "SELECT reviewers, forker FROM forkers";
 $result = $conn->query($sql);
-$key = 'omar';
-$value = 'rahin';
-
+$key = 'afia';
+$value = 'medha';
+session_start();
+$_SESSION['k'] = $key;
+$_SESSION['v'] = $value;
 $found = false;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
