@@ -13,12 +13,12 @@ if ($conn->connect_error) {
 }
 
 // Assuming you have received the values from a POST request
-$rev_id = "243";
-$user_id = "R2N";
-session_start();
+$rev_id = "420";
+$user_id = "Afia";
+
 
 // Retrieve the user_id, rev_id, and results from the database
-$sql = "SELECT user_id, rev_id, result FROM ad WHERE rev_id = $rev_id AND user_id = '$user_id'";
+$sql = "SELECT user_id, rev_id, result FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -31,10 +31,32 @@ if ($result->num_rows > 0) {
 
 // Do whatever you need with the $resultt value
 // For example, you could store it in a session variable:
-$_SESSION['rev'] = $resultt;
-$_SESSION['user'] = $resultt;
-$_SESSION['res'] = $resultt;
 
+if(isset($_POST['results'])) {
+  $resultt = $_POST['results'];
+  $sql = "SELECT * FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // If the row exists, perform an update or delete
+  if ($resultt === "none") {
+    // Delete the row
+    $sql = "DELETE FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
+  } else {
+    // Update the row
+    $sql = "UPDATE ad SET result = '{$resultt}' WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
+  }
+} else {
+  // If the row doesn't exist, perform an insert
+  $sql = "INSERT INTO ad (rev_id, user_id, result) VALUES ('{$rev_id}', '{$user_id}', '{$resultt}')";
+}
+
+if ($conn->query($sql) === TRUE) {
+  //echo "Record updated/inserted/deleted successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+}
 
 
 
@@ -81,120 +103,8 @@ $conn->close();
   <button class="button agree">Agree</button>
   <button class="button disagree">Disagree</button>
 
-  <script>
-document.getElementById("submit-button").style.display = "none";
-let resultt = document.getElementById('result').value;
-// Get the agree and disagree buttons
-const agreeButton = document.querySelector('.button.agree');
-const disagreeButton = document.querySelector('.button.disagree');
+  <script src = "ad.js">
 
-// Set the initial boolean values for the agree and disagree buttons
-let agree = false;
-let disagree = false;
-if(resultt === "agree")
-{
-    // Set the agree boolean value to true
-    agree = !agree;
-
-// Set the disagree boolean value to false
-disagree = false;
-
-// Update the CSS classes of the agree and disagree buttons
-agreeButton.classList.toggle('agree');
-agreeButton.classList.remove('disagree');
-
-disagreeButton.classList.remove('disagree');
-disagreeButton.classList.remove('agree');
-
-
-}
-else if(resultt === "disagree")
-{
-      // Set the disagree boolean value to true
-  disagree = !disagree;
-
-// Set the agree boolean value to false
-agree = false;
-
-// Update the CSS classes of the agree and disagree buttons
-disagreeButton.classList.toggle('disagree');
-disagreeButton.classList.remove('agree');
-
-agreeButton.classList.remove('agree');
-agreeButton.classList.remove('disagree');
-}
-
-// Add event listeners to the agree and disagree buttons
-agreeButton.addEventListener('click', () => {
-  // Set the agree boolean value to true
-  agree = !agree;
-
-  // Set the disagree boolean value to false
-  disagree = false;
-
-  // Update the CSS classes of the agree and disagree buttons
-  agreeButton.classList.toggle('agree');
-  agreeButton.classList.remove('disagree');
-
-  disagreeButton.classList.remove('disagree');
-  disagreeButton.classList.remove('agree');
-
-  result(agree, disagree);
-  const xhr = new XMLHttpRequest();
-
-xhr.open("GET", "insertad.php");
-
-xhr.onload = function() {
-  if (xhr.status == 200) {
-    // The PHP file was executed successfully.
-    const responseText = xhr.responseText;
-    // Do something with the response text.
-  } else {
-    // The PHP file was not executed successfully.
-    console.log("The PHP file was not executed successfully.");
-  }
-}
-});
-
-disagreeButton.addEventListener('click', () => {
-  // Set the disagree boolean value to true
-  disagree = !disagree;
-
-  // Set the agree boolean value to false
-  agree = false;
-
-  // Update the CSS classes of the agree and disagree buttons
-  disagreeButton.classList.toggle('disagree');
-  disagreeButton.classList.remove('agree');
-
-  agreeButton.classList.remove('agree');
-  agreeButton.classList.remove('disagree');
-
-  result(agree, disagree);
-  const xhr = new XMLHttpRequest();
-
-xhr.open("GET", "deleteForker.php");
-
-xhr.onload = function() {
-  if (xhr.status == 200) {
-    // The PHP file was executed successfully.
-    const responseText = xhr.responseText;
-    // Do something with the response text.
-  } else {
-    // The PHP file was not executed successfully.
-    console.log("The PHP file was not executed successfully.");
-  }
-}
-});
-
-function result(agree, disagree) {
-  const result = agree ? "agree" : (disagree ? "disagree" : "none");
-
-  document.getElementById('results').value = result;
-
-    document.getElementById("submit-button").click();
-
-}
 
   </script>
 </body>
