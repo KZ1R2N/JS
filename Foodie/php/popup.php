@@ -1,25 +1,24 @@
+
+<input type="text" name="rev" id="rev">
+<input type="submit" value="submit" id="sbutton">
+        
+        
+    </form>
+
 <?php
-// Assuming you have a database connection established
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "agreedisagree";
+require_once('database.php');
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
- die("Connection failed: " . $conn->connect_error);
-}
+    $input = $_SESSION['value'];
 
-// Assuming you have received the values from a POST request
-$rev_id = "420";
-$user_id = "Afia";
+$food_id= $input;
+$rev_id = $_POST['rev'];
+$user_id = $user_value['id'];
 
 
 // Retrieve the user_id, rev_id, and results from the database
-$sql = "SELECT user_id, rev_id, result FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
-$result = $conn->query($sql);
+$sql = "SELECT user_id, rev_id, result FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}' AND food_id = '{$food_id}'";
+$result = $connect->query($sql);
 
 if ($result->num_rows > 0) {
   // Get the row's result value
@@ -35,7 +34,7 @@ if ($result->num_rows > 0) {
 if(isset($_POST['results'])) {
   $resultt = $_POST['results'];
   $sql = "SELECT * FROM ad WHERE rev_id = '{$rev_id}' AND user_id = '{$user_id}'";
-$result = $conn->query($sql);
+$result = $connect->query($sql);
 
 if ($result->num_rows > 0) {
   // If the row exists, perform an update or delete
@@ -51,24 +50,33 @@ if ($result->num_rows > 0) {
   $sql = "INSERT INTO ad (rev_id, user_id, result) VALUES ('{$rev_id}', '{$user_id}', '{$resultt}')";
 }
 
-if ($conn->query($sql) === TRUE) {
-  //echo "Record updated/inserted/deleted successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+
 }
-}
-
-
-$conn->close();
-
-
-
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Agree/Disagree Button</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="hidden" id="result" value="<?php echo $resultt; ?>">
+<form action="popup.php" method="POST">
+
+
+        
+        <input type="text" name="results" id="results">
+        <input type="submit" value="submit" id="submit-button">
+        
+    </form>
+
+<button class="button agree"><i class="fa-solid fa-thumbs-up fa-xl"></i><span> </span>Agree</button>
+<button class="button disagree"><i class="fa-solid fa-thumbs-up fa-xl"></i><span> </span>Disagree</button>
+</body>
+</html>
+<style>
     .button {
       width: 100px;
       height: 50px;
@@ -112,43 +120,6 @@ $conn->close();
 
     }
   </style>
-</head>
-<body>
-<input type="hidden" id="result" value="<?php echo $resultt; ?>">
-<form action="ad.php" method="POST">
+ 
 
-
-        <input type="text" name="results" id="results">
-
-        <input type="submit" value="submit" id="submit-button">
-    </form>
-  <h1>Agree/Disagree Button</h1>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "agreedisagree";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT * FROM ad ";
-$result = $conn->query($sql);
-
-// Display data in an HTML table
-if ($result->num_rows > 0) {
-while ($row = $result->fetch_assoc()) {
-  echo $row["rev_id"];
-
-  echo '<button class="button agree-">Agree</button>';
-  echo '<button class="button disagree-"'. $row["rev_id"] .'>Disagree</button>';
- echo '<input type="hidden" id="rev" value="' . $row["rev_id"] . '">';
-
-  
-  echo '<script src = "ad.js"></script>';
-}
-}
-?>
-
-
-</body>
-</html>
-
+  <script src="agree.js"></script>

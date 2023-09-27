@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+body {
+    font-family: "Montserrat";
+  }
+  
+  /*header*/
+  
+  h1 {
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 1.5;
+  }
+  #title {
+    padding-top: 8rem;
+  
+  }
+  
+  .container-fluid {
+    padding: 3% 15%;
+  }
+  
+  
+  #title .container-fluid {
+    padding: 3% 15% 1%;
+  }
+  
+  .title-image {
+    width: 100%;
+  }
+  .d-flex .form-control{
+    width: 100%;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    box-sizing: border-box;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+  }
+  
+  /*Nav*/
+  
+  .navbar {
+    padding: 0 230px;
+    background-color: #f7f7f7;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  }
+  .navbar-nav{
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-item {
+    padding: 0 15px;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+    font-family: "Montserrat-light";
+  }
+  .nav-link:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+  
+  .drop-a{
+    background-color: #ffa500;
+  }
+  .drop-a:hover{
+    background-color: #ffa60093;
+  }
+
+  /*information*/
+
+  .profile-pic{
+    text-align: center;
+    margin:5% 0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .profile-pic img{
+    margin: auto;
+    border-radius: 50%;
+    height: 100%;
+  }
+  #info{
+    margin: auto;
+    background: #fff;
+    width: 85%;
+  }
+
+  #info h2{
+    text-align: center;
+    border: 2px solid;
+    height: 45px;
+    margin-bottom: 5%;
+    margin: 3% auto;
+    width: 50%;
+  }
+.form-text{
+    font-size: large;
+    font-weight: bold;
+}
+form{
+    background-color: #ecebeb;
+}
+
+form hr{
+    border: 0;
+    height: 0.05em;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.40));
+}
+
+.custom-button{
+    height: 45px;
+    background-color: #ffa500;
+    color: #000;
+    box-shadow: #000;
+    border-radius: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.custom-button:hover{
+    background-color: #ec9a01;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/*footer*/
+  
+#footer{
+    background-color: #eafaff;
+    color: #000;
+    padding: 3% 15% 0 15%;
+    text-align: center;
+  
+  }
+  .contact{
+    text-align: left;
+    color: #000;
+  }
+  
+  .footer-anchor{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+  
+  .footer-anchor:hover{
+    text-decoration: underline;
+  }
+
+
