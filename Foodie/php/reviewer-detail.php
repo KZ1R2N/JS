@@ -1,12 +1,12 @@
 <?php
-require_once('database.php');
+require_once('database2.php');
 if (isset($_GET['id'])) {
     $input = $_GET['id'];
     $id = (base64_decode($input) / 123456789);
     $sql = "SELECT * FROM registration where id='$id'";
     $result = mysqli_query($connect, $sql);
-    $value = mysqli_fetch_assoc($result);
-    echo $value['firstname'];
+    $values = mysqli_fetch_assoc($result);
+  
 }
 
 // $servername = "localhost";
@@ -77,20 +77,20 @@ if ($result->num_rows > 0) {
         <div class="reviewer">
             <img class="img" src="../image/face.jpg" alt="">
             <div class="ms-3">
-                <h4 class="mb-0"><?= $value['firstname']." "; ?><?= $value['firstname']; ?></h4>
+                <h4 class="mb-0"><?= $values['firstname']." "; ?><?= $values['lastname']; ?></h4>
                 <p class="text-secondary mb-1">@username1234</p>
             </div>
             <div>
                 <button class="fork">Fork</button>
-                    <!-- <td><label class = "forkk"><img id = 'ff' src="../image/fork.png" alt="" class = "fork"></label></td> -->
+                    <td><label class = "forkk"><img id = 'ff' src="../image/fork.png" alt="" class = "fork"></label></td>
 
             </div>
             <div class="social">
                 <p style="display: inline-block;">Follow on: </p>
-                <a href="<?= $value['youtube']; ?>"><img src="../image/youtube.png" alt=""></a>
-                <a href="<?= $value['instagram']; ?>"><img src="../image/facebook.png" alt=""></a>
-                <a href="<?= $value['facebook']; ?>"><img src="../image/instagram.png" alt=""></a>
-                <a href="<?= $value['www.twitt']; ?>"><img src="../image/twitter.png" alt=""></a>
+                <a href="<?= $values['youtube']; ?>"><img src="../image/youtube.png" alt=""></a>
+                <a href="<?= $values['instagram']; ?>"><img src="../image/facebook.png" alt=""></a>
+                <a href="<?= $values['facebook']; ?>"><img src="../image/instagram.png" alt=""></a>
+                <a href="<?= $values['www.twitt']; ?>"><img src="../image/twitter.png" alt=""></a>
             </div>
         </div>
     </section>
