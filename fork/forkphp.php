@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT reviewers, forker FROM forkers";
+$sql = "SELECT * FROM forkers";
 $result = $conn->query($sql);
 $key = 'afia';
 $value = 'medha';

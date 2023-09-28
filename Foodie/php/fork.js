@@ -1,4 +1,5 @@
-const found = document.querySelector('meta[name="name"]').content;
+const found = document.getElementById('found').value;
+console.log(found);
 document.querySelector('.fork').addEventListener('click',()=>{
     fork();
   });
@@ -7,11 +8,11 @@ document.querySelector('.fork').addEventListener('click',()=>{
 forkbutton.classList.add('forked');
 window.onload = function() {
   // Your JavaScript code here
-  if(found)
+  if(found>0)
   {
     forkbutton.classList.add('forked');
     forkbutton.innerText = 'Forked';
-    document.getElementById('ff').src = "../image/forked.png"
+    document.getElementById('ff').src = "forked.png"
    
   }
 
@@ -23,7 +24,7 @@ function fork() {
 
     if (buttonElement.innerText === 'Fork') {
       buttonElement.innerHTML = 'Forked';
-      document.getElementById('ff').src = "../image/forked.png"
+      document.getElementById('ff').src = "forked.png"
       buttonElement.classList.add('forked');
 
 
@@ -43,7 +44,8 @@ function fork() {
       };
       
       xhr.send();
-   
+      location.reload();
+      
      
     } else {
       buttonElement.innerHTML = 'Fork';
@@ -66,7 +68,7 @@ function fork() {
       };
       
       xhr.send();
-     
+      location.reload();
     }
 
    

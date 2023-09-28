@@ -1,14 +1,14 @@
 <?php
-require_once('database2.php');
+require_once('database.php');
 if (isset($_GET['id'])) {
     $input = $_GET['id'];
     $id = (base64_decode($input) / 123456789);
     $sql = "SELECT * FROM registration where id='$id'";
     $result = mysqli_query($connect, $sql);
-    $values = mysqli_fetch_assoc($result);
+    $value = mysqli_fetch_assoc($result);
   
 }
-
+include("functions.php");
 // $servername = "localhost";
 // $username = "root";
 // $password = "";
@@ -23,20 +23,23 @@ if (isset($_GET['id'])) {
 $sql = "SELECT reviewers, forker FROM forkers";
 $result = $connect->query($sql);
 $key = $value['id'];   //reviewers
-$value = $user_value['id'];  //forker
+$values = $user_value['id'];  //forker
 // session_start();
 $_SESSION['k'] = $key;
-$_SESSION['v'] = $value;
+$_SESSION['v'] = $values;
 
-$found = false;
+$founds = 0;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        if ($row['reviewers'] == $key && $row['forker'] == $value) {
-            $found = true;
+   
+        if ($row['reviewers'] == $key && $row['forker'] == $values) {
+            $founds = 1;
             break;
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -69,28 +72,36 @@ if ($result->num_rows > 0) {
         <!--Navigation-->
         <?php
         require('Navigation.php');
+   
         ?>
         </div>
     </section>
-    <meta name="name" content="<?php echo $found; ?>">
+
+
+
     <section id="account">
         <div class="reviewer">
             <img class="img" src="../image/face.jpg" alt="">
             <div class="ms-3">
-                <h4 class="mb-0"><?= $values['firstname']." "; ?><?= $values['lastname']; ?></h4>
-                <p class="text-secondary mb-1">@username1234</p>
+                <h4 class="mb-0"><?= $value['firstname']." "; ?><?= $value['lastname']; ?></h4>
+                <p class="text-secondary mb-1"><?= $value['username'];?></p>
             </div>
             <div>
                 <button class="fork">Fork</button>
-                    <td><label class = "forkk"><img id = 'ff' src="../image/fork.png" alt="" class = "fork"></label></td>
+                    <td><label class = "forkk"><img id = 'ff' src="fork.png" alt="" class = "forki"></label></td>
+                    <td class = "fcount">  <?php echo getforkers($key, $db); ?></td>
+            <input type="hidden" id="fc" value="<?php echo getforkers($key, $db); ?>">
+
+                  
 
             </div>
+            <input type="hidden" id="found" value="<?php echo $founds; ?>">
             <div class="social">
                 <p style="display: inline-block;">Follow on: </p>
-                <a href="<?= $values['youtube']; ?>"><img src="../image/youtube.png" alt=""></a>
-                <a href="<?= $values['instagram']; ?>"><img src="../image/facebook.png" alt=""></a>
-                <a href="<?= $values['facebook']; ?>"><img src="../image/instagram.png" alt=""></a>
-                <a href="<?= $values['www.twitt']; ?>"><img src="../image/twitter.png" alt=""></a>
+                <a href="<?= $value['youtube']; ?>"><img src="../image/youtube.png" alt=""></a>
+                <a href="<?= $value['instagram']; ?>"><img src="../image/facebook.png" alt=""></a>
+                <a href="<?= $value['facebook']; ?>"><img src="../image/instagram.png" alt=""></a>
+                <a href="<?= $value['twitter']; ?>"><img src="../image/twitter.png" alt=""></a>
             </div>
         </div>
     </section>
@@ -173,6 +184,15 @@ if ($result->num_rows > 0) {
 </body>
 
 </html>
+<style>
+    .imgg{
+        height: 20px;
+    }
+    .forki{
+        height: 20px;
+
+    }
+    </style>
 <script src="jQuery.js"></script>
 <script src="fork.js">
 

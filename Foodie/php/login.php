@@ -15,8 +15,11 @@ require_once('database.php');
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     <!--CSS-->
     <link rel="stylesheet" href="../css/reg-log.css">
 </head>
@@ -33,9 +36,10 @@ require_once('database.php');
         <div>
             <?php
             if (isset($_SESSION['register'])) {
-            ?>
-                <div class='alert alert-success' style='text-align:center; border-radius:0'>Registered Succsessfully ! </div>
-            <?php
+                ?>
+                <div class='alert alert-success' style='text-align:center; border-radius:0'>Registered Succsessfully !
+                </div>
+                <?php
             }
             if (isset($_POST["login"])) {
                 $email = $_POST["email"];
@@ -77,9 +81,13 @@ require_once('database.php');
                     <span></span>
                     <label for="password">Password</label>
                 </div>
-                <div class="pass">Forgot Password?</div>
+                <div class="pass">
+                    <a href="forgotpassform.php">Forgot Password?</a>
+                </div>
+
                 <!--Submit Button-->
-                <div class="m-auto text-center"><input class="btn button" type="submit" name="login" value="Log in"></div>
+                <div class="m-auto text-center"><input class="btn button" type="submit" name="login" value="Log in">
+                </div>
                 <div class="signup_link">
                     Not a member? <a href="registration.php">Register</a>
                 </div>

@@ -27,12 +27,12 @@ function getLikesDislikes($rev_id,$result,$db)
         $number_of_rows = $stmt->fetchColumn(); 
         return $number_of_rows;  
 }
-function getforkers($reviewers, $forker, $db)
+function getforkers($reviewers, $db)
 {
-  $sql="SELECT COUNT(*) FROM forkers WHERE reviewers = :reviewers AND forker=:forker";
+  $sql="SELECT COUNT(*) FROM forkers WHERE reviewers = :reviewers";
   $stmt = $db->prepare($sql);
 $stmt->bindParam(':reviewers', $reviewers, PDO::PARAM_INT);
-$stmt->bindParam(':forker', $forker, PDO::PARAM_STR);
+
 $stmt->execute();
 $number_of_rows = $stmt->fetchColumn(); 
 return $number_of_rows;  

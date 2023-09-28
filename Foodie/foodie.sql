@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2023 at 05:24 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.4
+-- Generation Time: Sep 27, 2023 at 03:44 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,22 +33,18 @@ CREATE TABLE `ad` (
   `rev_id` int(11) NOT NULL,
   `user_id` varchar(50) NOT NULL,
   `result` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ad`
 --
 
 INSERT INTO `ad` (`id`, `food_id`, `rev_id`, `user_id`, `result`) VALUES
-(1, 0, 0, '0', 'none'),
-(2, 0, 243, '0', 'none'),
-(3, 0, 243, '0', 'none'),
-(4, 0, 243, '0', 'none'),
-(5, 0, 243, '0', 'none'),
-(6, 0, 420, 'R2N', 'agree'),
-(7, 0, 420, 'Afia', 'agree'),
-(13, 0, 3, '3', 'agree'),
-(14, 0, 6, '3', 'agree');
+(40, 4, 2, '8', 'dislike'),
+(42, 4, 4, '8', 'like'),
+(67, 4, 1, '8', 'like'),
+(70, 4, 2, '10', 'dislike'),
+(76, 4, 4, '10', 'like');
 
 -- --------------------------------------------------------
 
@@ -67,38 +63,38 @@ CREATE TABLE `food_info` (
   `price` decimal(10,2) NOT NULL,
   `rating` decimal(3,1) NOT NULL,
   `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `food_info`
 --
 
 INSERT INTO `food_info` (`food_id`, `food_name`, `restaurant_name`, `image`, `location`, `type`, `catagory`, `price`, `rating`, `description`) VALUES
-(1, 'BBQ Giant Meal', 'BFC', 'bbq-meal.jpg', '', 'Combo Meal', 'Main Course', '1460.00', '4.5', '4 pcs Chicken ,French fries (L),Coleslaw (S),2 Buns ,2 bottles soft drinks (250ml)'),
-(2, 'Burger', 'Chillox,Mirpur-1', 'burger.jpg', '', 'Burgers', 'Burgers', '280.00', '3.5', 'Bun,Patty,Lettuce,Tomato,Pickle,Chedder Cheese,Cucumber,Oninon.'),
-(3, 'Cheese Mountain', 'Cheese Factory', 'cheese-mountain.jpg', '', 'Pasta', 'Pasta & Noodles', '250.00', '4.0', 'Milk Powder, Chicken, Capsicum, Mushroom, Mozzarella Cheese, Secret Pasta Sauce.'),
-(4, 'Cheese n BBQ Chicken Pizza', 'Cheese Factory', 'bbq pizza.jpg', '', 'Pizza', 'Pizza', '560.00', '4.0', 'Full of Chicken Blended in BBQ Flavored Sauce, Imported Mozzarella, Cheese decorated with Green Capsicum & Black Olive.'),
-(5, 'Cheesy chicken Box', 'Fire and forks', 'chicken-box.jpg', '', 'Chicken', 'Main Course', '255.00', '3.5', '1:1 Cheesy chicken served with own made sauce'),
-(6, 'Chicken and fries meal', 'KFC', 'kfc-chicken.jpg', '', 'Combo Meal', 'Main Course', '789.00', '4.0', '4 pcs hot and crispy chicken, 1 Medium fries and 2 pepsi'),
-(7, 'Chicken lollipop', 'Pizza Burg', 'chicken-lollipop.jpg', '', 'Chicken', 'Sides', '175.00', '3.5', 'Decorated with garden salad and a cup of secret sauce'),
-(8, 'Chicken Steak', 'Roadside kitchen', 'chicken-steak.jpg', '', 'Steak', 'Main Course', '349.00', '3.5', '1:1 served with potato wedges and garlic mushroom'),
-(9, 'Chicken Tenders', 'Kudos', 'chicken-tenders.jpg', '', 'Chicken', 'Appetizers', '239.00', '3.2', 'Prepared with chicken, Masala and spices'),
-(10, 'Chicken Tenders', 'The Hub Rooftop', 'chicken-tender.jpg', '', 'Chicken', 'Appetizers', '575.00', '4.0', 'Breaded chicken tenders, coleslaw, fries, plum sauce, pickles'),
-(11, 'Chicken Wings', 'The Hub Rooftop', 'chicken-wings.jpg', '', 'Chicken', 'Appetizers', '325.00', '4.5', 'BBQ, buffalo, Cajun dry rub, honey garlic,   lemon pepper, butter parm, spicy Thai, sweet sriracha'),
-(12, 'Classic Burger', 'The Hub Rooftop', 'classic-burger.jpg', '', 'Burgers', 'Burgers', '290.00', '4.0', 'Lettuce, tomato, pickles, special sauce'),
-(13, 'Etalia Meatball', 'The Etalia', 'meatball.jpg', '', 'Pizza', 'Pizza', '350.00', '4.3', 'Prepared with fresh dough, Topped with freshly cubed Chicken'),
-(14, 'French Fries', 'Burger King', 'french fries.jpg', '', 'Fries', 'Sides', '209.00', '4.0', 'Deep fried thinly cut potato chips'),
-(15, 'Fried Chicken', 'Burger King ', 'fried-chicken.jpg', '', 'Chicken', 'Appetizers', '299.00', '3.5', '2 Pcs. Tender & Juicy chicken, Fried until crispy outside'),
-(16, 'Masala Chicken Tikka', 'Pizza Hut', 'tikka-pizza.jpg', '', 'Pizza', 'Pizza', '899.00', '3.5', 'Chicken Tikka, Capsicum, Tomato, Green Chili'),
-(17, 'Oven baked pasta', 'YellowKnife', 'oven-baked.jpg', '', 'Pasta', 'Pasta & Noodles', '360.00', '4.0', '1:2 prepared with chicken'),
-(18, 'Pasta Basta', 'YellowKnife', 'pasta-basta.jpg', '', 'Pasta', 'Pasta & Noodles', '380.00', '3.0', '1:2 Prepared with beef'),
-(19, 'Pizza', 'Pizza Burg', 'pizza-burg.jpg', '', 'Pizza', 'Pizza', '325.00', '4.0', 'Spicy chicken ball, diced onion,Green chili,cheese, Marinara sauce'),
-(20, 'Smoky chicken sandwich', 'Kudos', 'chicken-sandwich.jpg', '', 'Sandwich', 'Sandwitch', '210.00', '3.0', 'Hot, smoky and cheesy sandwich'),
-(21, 'Spiced Tandoori Chicken', 'Pizza Hut', 'tandori-pizza.jpg', '', 'Pizza', 'Pizza', '799.00', '4.0', 'Chicken Tandoori, Capsicum, Onion, Green Chili, Sweet corn'),
-(22, 'Strips and Rice combo ', 'KFC', 'fried-rice.jpg', '', 'Combo Meal', 'Main Course', '519.00', '4.0', 'Get a full rice bowl with 3 boneless chicken strips'),
-(23, 'T-Bone steak', 'Fire and forks', 't-bone.jpg', '', 'Steak', 'Main Course', '1665.00', '4.5', '350gm- Grass fed angus beef, @ regular side and sauce'),
-(24, 'Tartar Chicken Burger', 'Burger King', 'chicken-burger.jpg', '', 'Burgers', 'Burgers', '299.00', '3.5', 'Delicious Burger with chicken patty and inside sauce'),
-(25, 'Thrift Combo', 'BFC', 'chicken-fries.jpg', '', 'Combo Meal', 'Main Course', '2238.00', '4.1', 'Total 6pc Chicken, 3 serves french fries, 3 Bun, 3 coleslaw salad and 3 drinks.');
+(1, 'BBQ Giant Meal', 'BFC', 'bbq-meal.jpg', '', 'Combo Meal', 'Main Course', 1460.00, 4.5, '4 pcs Chicken ,French fries (L),Coleslaw (S),2 Buns ,2 bottles soft drinks (250ml)'),
+(2, 'Burger', 'Chillox,Mirpur-1', 'burger.jpg', '', 'Burgers', 'Burgers', 280.00, 3.5, 'Bun,Patty,Lettuce,Tomato,Pickle,Chedder Cheese,Cucumber,Oninon.'),
+(3, 'Cheese Mountain', 'Cheese Factory', 'cheese-mountain.jpg', '', 'Pasta', 'Pasta & Noodles', 250.00, 4.0, 'Milk Powder, Chicken, Capsicum, Mushroom, Mozzarella Cheese, Secret Pasta Sauce.'),
+(4, 'Cheese n BBQ Chicken Pizza', 'Cheese Factory', 'bbq pizza.jpg', '', 'Pizza', 'Pizza', 560.00, 4.0, 'Full of Chicken Blended in BBQ Flavored Sauce, Imported Mozzarella, Cheese decorated with Green Capsicum & Black Olive.'),
+(5, 'Cheesy chicken Box', 'Fire and forks', 'chicken-box.jpg', '', 'Chicken', 'Main Course', 255.00, 3.5, '1:1 Cheesy chicken served with own made sauce'),
+(6, 'Chicken and fries meal', 'KFC', 'kfc-chicken.jpg', '', 'Combo Meal', 'Main Course', 789.00, 4.0, '4 pcs hot and crispy chicken, 1 Medium fries and 2 pepsi'),
+(7, 'Chicken lollipop', 'Pizza Burg', 'chicken-lollipop.jpg', '', 'Chicken', 'Sides', 175.00, 3.5, 'Decorated with garden salad and a cup of secret sauce'),
+(8, 'Chicken Steak', 'Roadside kitchen', 'chicken-steak.jpg', '', 'Steak', 'Main Course', 349.00, 3.5, '1:1 served with potato wedges and garlic mushroom'),
+(9, 'Chicken Tenders', 'Kudos', 'chicken-tenders.jpg', '', 'Chicken', 'Appetizers', 239.00, 3.2, 'Prepared with chicken, Masala and spices'),
+(10, 'Chicken Tenders', 'The Hub Rooftop', 'chicken-tender.jpg', '', 'Chicken', 'Appetizers', 575.00, 4.0, 'Breaded chicken tenders, coleslaw, fries, plum sauce, pickles'),
+(11, 'Chicken Wings', 'The Hub Rooftop', 'chicken-wings.jpg', '', 'Chicken', 'Appetizers', 325.00, 4.5, 'BBQ, buffalo, Cajun dry rub, honey garlic,   lemon pepper, butter parm, spicy Thai, sweet sriracha'),
+(12, 'Classic Burger', 'The Hub Rooftop', 'classic-burger.jpg', '', 'Burgers', 'Burgers', 290.00, 4.0, 'Lettuce, tomato, pickles, special sauce'),
+(13, 'Etalia Meatball', 'The Etalia', 'meatball.jpg', '', 'Pizza', 'Pizza', 350.00, 4.3, 'Prepared with fresh dough, Topped with freshly cubed Chicken'),
+(14, 'French Fries', 'Burger King', 'french fries.jpg', '', 'Fries', 'Sides', 209.00, 4.0, 'Deep fried thinly cut potato chips'),
+(15, 'Fried Chicken', 'Burger King ', 'fried-chicken.jpg', '', 'Chicken', 'Appetizers', 299.00, 3.5, '2 Pcs. Tender & Juicy chicken, Fried until crispy outside'),
+(16, 'Masala Chicken Tikka', 'Pizza Hut', 'tikka-pizza.jpg', '', 'Pizza', 'Pizza', 899.00, 3.5, 'Chicken Tikka, Capsicum, Tomato, Green Chili'),
+(17, 'Oven baked pasta', 'YellowKnife', 'oven-baked.jpg', '', 'Pasta', 'Pasta & Noodles', 360.00, 4.0, '1:2 prepared with chicken'),
+(18, 'Pasta Basta', 'YellowKnife', 'pasta-basta.jpg', '', 'Pasta', 'Pasta & Noodles', 380.00, 3.0, '1:2 Prepared with beef'),
+(19, 'Pizza', 'Pizza Burg', 'pizza-burg.jpg', '', 'Pizza', 'Pizza', 325.00, 4.0, 'Spicy chicken ball, diced onion,Green chili,cheese, Marinara sauce'),
+(20, 'Smoky chicken sandwich', 'Kudos', 'chicken-sandwich.jpg', '', 'Sandwich', 'Sandwitch', 210.00, 3.0, 'Hot, smoky and cheesy sandwich'),
+(21, 'Spiced Tandoori Chicken', 'Pizza Hut', 'tandori-pizza.jpg', '', 'Pizza', 'Pizza', 799.00, 4.0, 'Chicken Tandoori, Capsicum, Onion, Green Chili, Sweet corn'),
+(22, 'Strips and Rice combo ', 'KFC', 'fried-rice.jpg', '', 'Combo Meal', 'Main Course', 519.00, 4.0, 'Get a full rice bowl with 3 boneless chicken strips'),
+(23, 'T-Bone steak', 'Fire and forks', 't-bone.jpg', '', 'Steak', 'Main Course', 1665.00, 4.5, '350gm- Grass fed angus beef, @ regular side and sauce'),
+(24, 'Tartar Chicken Burger', 'Burger King', 'chicken-burger.jpg', '', 'Burgers', 'Burgers', 299.00, 3.5, 'Delicious Burger with chicken patty and inside sauce'),
+(25, 'Thrift Combo', 'BFC', 'chicken-fries.jpg', '', 'Combo Meal', 'Main Course', 2238.00, 4.1, 'Total 6pc Chicken, 3 serves french fries, 3 Bun, 3 coleslaw salad and 3 drinks.');
 
 -- --------------------------------------------------------
 
@@ -116,7 +112,7 @@ CREATE TABLE `food_review` (
   `rating` float DEFAULT NULL,
   `comment` varchar(255) DEFAULT NULL,
   `date` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `food_review`
@@ -140,7 +136,10 @@ INSERT INTO `food_review` (`rev_id`, `rev_name`, `email`, `username`, `user_id`,
 (15, 'adit', 'adit@gmail.com', 'adit123', 0, 2, 5, 'Best', ''),
 (69, 'Medha R', 'medha12@gmail.com', 'medha12', 7, 4, 5, 'Very tasty', 'Sunday, 24/09/2023 02:52 AM'),
 (70, 'Medha R', 'medha12@gmail.com', 'medha12', 7, 4, 4, 'Good', 'Sunday, 24/09/2023 10:15 AM'),
-(73, 'Afia Jahin', 'afiajahin.p25@gmail.com', 'afia1234', 3, 4, 3, 'very good', 'Sunday, 24/09/2023 10:37 AM');
+(73, 'Afia Jahin', 'afiajahin.p25@gmail.com', 'afia1234', 3, 4, 3, 'very good', 'Sunday, 24/09/2023 10:37 AM'),
+(74, 'Antu Dabichi', 'antu@gmail.com', 'Davinci', 8, 4, 4, 'asdgf', 'Tuesday, 26/09/2023 06:23 AM'),
+(75, 'Antu Dabichi', 'antu@gmail.com', 'Davinci', 8, 4, 5, 'rtrt', 'Tuesday, 26/09/2023 06:23 AM'),
+(76, 'Antu Dabichi', 'antu@gmail.com', 'Davinci', 8, 13, 2, 'this is shitty', 'Tuesday, 26/09/2023 04:49 PM');
 
 -- --------------------------------------------------------
 
@@ -149,21 +148,18 @@ INSERT INTO `food_review` (`rev_id`, `rev_name`, `email`, `username`, `user_id`,
 --
 
 CREATE TABLE `forkers` (
-  `reviewers` varchar(50) NOT NULL,
-  `forker` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `reviewers` int(20) NOT NULL,
+  `forker` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `forkers`
 --
 
 INSERT INTO `forkers` (`reviewers`, `forker`) VALUES
-('rajib', 'medha'),
-('afia', 'medha'),
-('omar', 'R2N'),
-('3', '3'),
-('7', '7'),
-('7', '3');
+(3, 9),
+(7, 9),
+(7, 10);
 
 -- --------------------------------------------------------
 
@@ -185,7 +181,7 @@ CREATE TABLE `registration` (
   `instagram` varchar(250) NOT NULL,
   `facebook` varchar(250) NOT NULL,
   `twitter` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `registration`
@@ -198,7 +194,10 @@ INSERT INTO `registration` (`id`, `email`, `username`, `image`, `firstname`, `la
 (4, 'ratun@gmail.com', 'ratun123', '', 'kazi', 'ratun', 'mirpur 2', '01736537766', '$2y$10$PIwN4LpY4s2JHHFb/Ycwr.lWWg1/OUKxxZqgaD0Fdj7hnSTwkhr6S', '', '', '', ''),
 (5, 'afiajah.p25@gmail.com', 'd', '', 'Afia', 'Jahin', 'Rupnogor', '01754346749', '$2y$10$vDiPxifBBW.Q7nZILPLRFOnd0X7tvn87w1XD0nc/7TNx8x54mVOvy', '', '', '', ''),
 (6, 'afi@gmail.com', 'c', '', 'Afia', 'Jahin', 'Rupnogor', '01754346749', '$2y$10$MI0TkiggEnS07zut7rdBg.4T/rg8IEr.CiBbxSzPOjFLQvD0m5qlC', '', '', '', ''),
-(7, 'medha12@gmail.com', 'medha12', 'faceless-woman-icon-image-vector-14391791 (1).jpg', 'Medha', 'R', 'Mirpur', '01754129456', '$2y$10$ci.ZrbFRKPDegpPVxj07ROz4038wlzoLSy4EnToQwOKa2AMSzQx3y', '', '', '', '');
+(7, 'medha12@gmail.com', 'medha12', 'faceless-woman-icon-image-vector-14391791 (1).jpg', 'Medha', 'R', 'Mirpur', '01754129456', '$2y$10$ci.ZrbFRKPDegpPVxj07ROz4038wlzoLSy4EnToQwOKa2AMSzQx3y', '', '', '', ''),
+(8, 'antu@gmail.com', 'Davinci', '', 'Antu', 'Dabichi', 'National Housing, Mirpur 2, Dhaka', '01736537768', '$2y$10$PEtLECxV/BVNHiYwIookVOo3ZmFVBYaaXoy1/fL1zgTtlkTEtl7E.', '', '', '', ''),
+(9, 'antu1@gmail.com', 'an2', '', 'aa', 'ff', 'asd', '01736537755', '$2y$10$4m/iBM8fqIK/GCawo0cWH.Guli8h7lfu9MEUfqYdRDQVBLkwzuzJ2', '', '', '', ''),
+(10, 'ratun12@gmail.com', 'ratun2', '', 'kazi', 'rifat', 'asdf', '01736537755', '$2y$10$AmnzXAUpYtG.mF82SlUn7.IYB6wuKXe4K5A.bjmeHozwLdrOBu6lC', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +207,8 @@ INSERT INTO `registration` (`id`, `email`, `username`, `image`, `firstname`, `la
 -- Indexes for table `ad`
 --
 ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rev_id` (`rev_id`,`user_id`);
 
 --
 -- Indexes for table `food_info`
@@ -236,7 +236,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `ad`
 --
 ALTER TABLE `ad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `food_info`
@@ -248,13 +248,13 @@ ALTER TABLE `food_info`
 -- AUTO_INCREMENT for table `food_review`
 --
 ALTER TABLE `food_review`
-  MODIFY `rev_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `rev_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
